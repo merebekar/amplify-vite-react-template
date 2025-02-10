@@ -27,3 +27,6 @@ dist-ssr
 .amplify
 amplify_outputs*
 amplifyconfiguration*
+*.vsidx
+*.sqlite
+.vs/amplify-vite-react-template/FileContentIndex/read.lock
