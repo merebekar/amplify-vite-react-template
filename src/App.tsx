@@ -23,18 +23,15 @@ function App() {
     });
   }, []);
 
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
 
     return (
-      <main>
-          <h1> {user?.signInDetails?.loginId}'s todos</h1>
-          <button onClick={createTodo}>Add new</button>
+        <main>
+            
+          <h1> Hello {user?.signInDetails?.loginId}</h1>
 
             <div>
                 <button onClick={handleClick}>
-                    {showComponent ? 'Hide Component' : 'Show Component'}
+                    {showComponent ? 'Hide Storage Browser' : 'Show Storage Browser'}
                 </button>
                 {showComponent && <SB />}
             </div>
