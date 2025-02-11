@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { StorageBrowser } from '../components/StorageBrowser';
-
+import SB from './SB';
 
 
 const client = generateClient<Schema>();
@@ -11,6 +10,12 @@ const client = generateClient<Schema>();
 function App() {
     const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
     const { user, signOut } = useAuthenticator();
+    const [showComponent, setShowComponent] = useState(false);
+
+    const handleClick = () => {
+        setShowComponent(!showComponent);
+    };
+
 
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
@@ -22,10 +27,18 @@ function App() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
 
-  return (
+    return (
       <main>
           <h1> {user?.signInDetails?.loginId}'s todos</h1>
-      <button onClick={createTodo}>+ new</button>
+          <button onClick={createTodo}>Add new</button>
+
+            <div>
+                <button onClick={handleClick}>
+                    {showComponent ? 'Hide Component' : 'Show Component'}
+                </button>
+                {showComponent && <SB />}
+            </div>
+
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>{todo.content}</li>
