@@ -17,8 +17,9 @@ export const { StorageBrowser } = createStorageBrowser({
 
 function SB() {
     return (
-        <div><h3> SB Comes Here!!</h3></div>
-            
+        <div><h3> SB Comes Here!!</h3>
+            <StorageBrowser/>
+        </div>
     );
 }
 
